@@ -1,0 +1,79 @@
+<%=button_to 'Back', root_path, method: :get %>
+<h3>Designation : <b><%= @doctor.role. titleize %></b></h3>
+<center><h5>
+<div class= "form-horizontal">
+<% if doctor_alloted? %>
+  <div class="form-group">
+    <div class="control-label col-sm-2">
+      <%= label_tag "Department : " %>
+    </div>
+    <div class="col-sm-3">
+      <input type="text" value = "<%= @doctor.doctors.first.department.name %>" readonly size="35" class: "form-control"/>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="control-label col-sm-2">
+      <%= label_tag "Time Slots : " %>
+    </div>
+    <div class="col-sm-3">
+      <input type="text" value = "<%= @doctor.doctors.first.time_slots %>" readonly size="35" class: "form-control"/>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="control-label col-sm-2">
+      <%= label_tag "Days : " %>
+    </div>
+    <div class="col-sm-3">
+      <input type="text" value = "<%= @doctor.doctors.first.days %>" readonly size="35" class: "form-control"/>
+    </div>
+  </div>
+<% else %>
+  <div class="form-group">
+    <div class="control-label col-sm-2">
+      <%= label_tag "Yet you are not appointed as doctor" %>
+    </div>
+  </div>
+<% end %>
+<div class="form-group">
+  <div class="control-label col-sm-2">
+    <%= label_tag "Date of Birth : " %>
+  </div>
+  <div class="col-sm-3">
+    <input type="text" value = "<%= @doctor.dob %>" readonly size="35" class: "form-control"/>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="control-label col-sm-2">
+    <%= label_tag "Gender : " %>
+  </div>
+  <div class="col-sm-3">
+     <input type="text" value = "<%= @doctor.gender %>" readonly size="35" class: "form-control"/>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="control-label col-sm-2">
+    <%= label_tag "Address : " %>
+  </div>
+  <div class="col-sm-3">
+    <textarea cols="35" readonly ><%= @doctor.address %></textarea>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="control-label col-sm-2">
+    <%= label_tag "Phone : " %>
+  </div>
+  <div class="col-sm-3">
+    <input type="text" value = "<%= @doctor.phone %>" readonly size="35" class: "form-control"/>
+  </div>
+</div>
+
+</div>
+<% unless current_user.role == "admin" %>
+  <%=button_to 'edit',  edit_user_registration_path, method: :get %>
+<% end %>
+</h5></center>

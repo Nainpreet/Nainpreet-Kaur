@@ -1,0 +1,45 @@
+<%=button_to 'Back', root_path, method: :get %>
+<h3>Designation : <b><%= @patient.role. titleize %></b></h3>
+<center><h5>
+<div class= "form-horizontal">
+  <div class="form-group">
+    <div class="control-label col-sm-2">
+      <%= label_tag "Date of Birth : " %>
+    </div>
+    <div class="col-sm-3">
+      <input type="text" value = "<%= @patient.dob %>" readonly size="35" class: "form-control"/>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="control-label col-sm-2">
+      <%= label_tag "Gender : " %>
+    </div>
+    <div class="col-sm-3">
+       <input type="text" value = "<%= @patient.gender %>" readonly size="35" class: "form-control"/>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="control-label col-sm-2">
+      <%= label_tag "Address : " %>
+    </div>
+    <div class="col-sm-3">
+      <textarea cols="35" readonly ><%= @patient.address %></textarea>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="control-label col-sm-2">
+      <%= label_tag "Phone : " %>
+    </div>
+    <div class="col-sm-3">
+      <input type="text" value = "<%= @patient.phone %>" readonly size="35" class: "form-control"/>
+    </div>
+  </div>
+
+</div>
+<% unless current_user.role == "admin" %>
+  <%=button_to 'edit',  edit_user_registration_path, method: :get %>
+<% end %>
+</h5></center>

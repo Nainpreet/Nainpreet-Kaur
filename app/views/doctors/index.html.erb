@@ -1,0 +1,44 @@
+<% if flash[:success_doc] %>
+<div class="alert alert-success  alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button><center><%= flash[:success_doc] %></center></div>
+<% end %>
+<div class="form-group">
+<center>
+  <h1>Doctors</h1>
+  <style>
+    table ,th,td
+    {border: 4px solid grey; padding:5px 5px 5px 5px; width:50%}
+  </style>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th height="50">Doctor Id</th>
+        <th height="50">Doctor Name</th>
+        <th height="50">Department</th>
+        <th height="50">Available Time</th>
+        <th height="50">Available Days</th>
+        <th colspan=3 height="50"> Actions </th>
+      </tr>
+    </thead>
+    <tbody>
+    <% if @doctors %>
+      <% @doctors.each do |doc| %>
+        <tr>
+          <td><%= doc.id %></td>
+          <td><%= doc.user.name %></td>
+          <td><%= doc.department.name %></td>
+          <td><%= doc.time_slots %></td>
+          <td><%= doc.days %></td>
+          <td><%= link_to ' Edit ', edit_doctor_path(doc) %></td>
+          <td><%= link_to ' Profile ', doctor_path(doc) %></td>
+          <td><%= link_to ' Remove', doc, method: :delete, data: { confirm: 'Are you sure to remove Doctor?' } %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+  <%=button_to 'New Doctor' , new_doctor_path, method: :get %>
+</center>
+</div>

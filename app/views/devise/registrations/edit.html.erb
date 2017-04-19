@@ -1,0 +1,58 @@
+<%= bootstrap_devise_error_messages! %>
+<div class="panel panel-default devise-bs">
+  <div class="panel-heading">
+    <h4><%= t('.title', resource: resource_class.model_name.human , default: "Edit #{resource_name.to_s.humanize}") %></h4>
+  </div>
+  <div class="panel-body">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, class: 'form-control'%>
+      </div>
+      <div class="form-group">
+        <%= f.label :Name %>
+        <%= f.text_field :name, autofocus: true %>
+      </div>
+      <div class="form-group">
+        <%= f.label :Date_of_birth %>
+        <%= f.text_field :dob, "data-provide" => 'datepicker' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :Gender %>
+        <%= f.radio_button :gender,'Female' %>Female
+        <%= f.radio_button :gender, 'Male' %>Male
+        <%= f.radio_button :gender, 'transgender' %>Transgender
+      </div>
+      <div class="form-group">
+        <%= f.label :Address %>
+        <%= f.text_area :address, autofocus: true, cols:35 %>
+      </div>
+      <div class="form-group">
+        <%= f.label :Phone %>
+        <%= f.text_field :phone, autofocus: true %>
+        <% if resource.is_verified %>
+            You're mobile number is verified.
+        <% end%>
+      </div>
+      <% unless current_user.provider %>
+      <div class="form-group">
+        <%= f.label :password %><i>(<%= t('.Leave it if you do not want to change password', default: 'Leave it if you do not want to change password') %>)</i>
+        <%= f.password_field :password %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation%>
+      </div>
+      <div class="form-group">
+        <%= f.label :current_password %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes', default: 'we need your current password to confirm your changes') %>)</i>
+        <%= f.password_field :current_password, class: 'form-control' %>
+      </div>
+      <% end %>
+      <%= f.submit t('.update', default: 'Update'), class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
+
+<p><%= link_to t('.delete_my_account', default: 'Delete my account'), registration_path(resource_name), data: { confirm: t('.are_you_sure', default: "Are you sure?") }, method: :delete %>.</p>
+
+<%= link_to t('.back', default: 'Back'), :back %>

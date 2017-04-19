@@ -1,0 +1,23 @@
+<%= form_for (department),:html => {class: "form-horizontal", role: "form"} do |f| %>
+  <% if department.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(department.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+        <% department.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <div class="control-label col-sm-2">
+      <%= f.label "Department Name" %>
+    </div>
+    <div class="col-sm-4">
+      <%= f.text_field :name, class: "form-control", placeholder: "Enter Department name", autofocus: true %>
+    </div>
+  </div>
+  <center>
+    <%= f.submit "Add", class: 'btn btn-primary btn-lg' %>
+  </center>
+<% end %>

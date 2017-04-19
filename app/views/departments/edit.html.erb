@@ -1,0 +1,5 @@
+<% if can? :manage, :all %>
+  <%=button_to 'Back', departments_path, method: :get %>
+  <h1 align="center">Update Department</h1>
+  <%= render 'form', department: @department %>
+<% end %>

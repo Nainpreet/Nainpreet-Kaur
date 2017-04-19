@@ -1,0 +1,72 @@
+<% if flash[:success_doc] %>
+<div class="alert alert-success  alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button><center><%= flash[:success_doc] %></center></div>
+<% end %>
+<div class="form-group">
+<% if @appointments.empty? %>
+  <div class="form-group">
+    <center><strong>No Pending Appointment</strong></center>
+  </div>
+<% else %>
+<center>
+  <h1>Pending Appointments </h1>
+  <table  class="table table-bordered" >
+    <thead>
+      <tr>
+      <% if current_user.role == "Patient" %>
+        <th height="50">Department</th>
+        <th height="50">Doctor </th>
+      <% else %>
+        <th height="50">Patient</th>
+      <% end %>
+        <th height="50">Time Slot</th>
+        <th height="50">Date</th>
+        <th height="50">Appointment Date</th>
+        <th height="50">Symptoms</th>
+        <th height="50">Medications</th>
+        <th height="50">Status</th>
+      <% if current_user.role == "Doctor" %>
+        <th height="50">Action</th>
+      <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @appointments.each do |app| %>
+      <%= form_tag('/appointment/status', method: 'post') do %>
+        <tr>
+        <% if current_user.role == "Patient" %>
+          <td><%= app.doctor.department.name %></td>
+          <td><%= app.doctor.user.name %></td>
+        <% else %>
+          <td><%= app.user.name %></td>
+        <% end %>
+          <td><%= app.time_slots %></td>
+          <td><%= app.date %></td>
+          <td><%= app.app_date %></td>
+          <td><%= app.symptoms %></td>
+          <td><%= app.medications %></td>
+          <td><%= radio_button_tag :status, 'Pending', app.status == 'Pending' %>Pending
+              <%= radio_button_tag :status,'Reject', app.status == 'Reject'  %>Reject
+              <%= radio_button_tag :status,'Accept', app.status == 'Accept'  %>Accept
+              <%= radio_button_tag :status, 'Follow Up', app.status == 'Follow Up'  %>Follow Up
+            <% if current_user.role == "Patient" %>
+            <td><%= link_to('Cancel', appointment_cancel_path(app.id), method: :get ) %></td>
+            <% end %>
+            <% if current_user.role == "Doctor" %>
+              <%= radio_button_tag :status, 'Completed',app.status == 'Completed' %>Completed
+            <% end %>
+          </td>
+          <% if current_user.role == "Doctor" %>
+            <input name="id" value="<%= app.id %>" type="hidden" />
+            <td><input type="submit" value="Update Status" /></td>
+          <% end %>
+        </tr>
+      <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</center>
+<% end %>
+</div>

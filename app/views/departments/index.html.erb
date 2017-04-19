@@ -1,0 +1,33 @@
+<% if flash[:success] %>
+<div class="alert alert-success  alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button><center><%= flash[:success] %></center></div>
+<% end %>
+<div class="form-group">
+<center>
+  <h1>Departments</h1>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th height="50">Department Id</th>
+        <th height="50">Department Name</th>
+        <th colspan=2 height="50"> Actions </th>
+      </tr>
+    </thead>
+    <tbody>
+    <% if @departments %>
+      <% @departments.each do |dept| %>
+        <tr>
+          <td><%= dept.id %></td>
+          <td><%= dept.name %></td>
+          <td><%= link_to ' Edit ', edit_department_path(dept) %></td>
+          <td><%= link_to ' Remove', dept, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+  <%=button_to 'New Department' , new_department_path, method: :get %>
+</center>
+</div>
