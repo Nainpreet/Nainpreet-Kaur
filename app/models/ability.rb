@@ -7,8 +7,17 @@ class Ability
        user ||= User.new # guest user (not logged in)
        if user.role == 'admin'
          can :manage, :all
-       else
-         can :show, :all
+       elsif user.role == 'Doctor'
+         can :show, User do |doc|
+           doc.id == user.id
+         end
+       elsif user.role == 'Patient'
+         can :show, User do |patient|
+           patient.id == user.id
+         end
+         can :map, User do |patient|
+           patient.id == user.id
+         end
        end
     #
     # The first argument to `can` is the action you are giving the user

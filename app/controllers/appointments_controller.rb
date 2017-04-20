@@ -1,27 +1,30 @@
 #
 class AppointmentsController < ApplicationController
   def index
+    @search = Appointment.where.not(status: ['Completed', 'Cancel', 'Reject']).search(params[:q])
     @records = Appointment.where.not(status: ['Completed', 'Cancel', 'Reject'])
     if current_user.role == 'Patient'
       @appointments = @records.where('user_id = ? ', current_user.id)
     else
-      @appointments = @records.where(doctor_id: Doctor.find_by(user_id: current_user.id).id )
+      @appointments = @records.where(doctor_id: Doctor.find_by(user_id: current_user.id).id)
     end
+    @appointments = @search.result.page params[:page]
   end
 
   def appointment_history
+    # @search = Appointment.where(status: ['Completed', 'Cancel', 'Reject']).search(params[:q])
     @records = Appointment.where(status: ['Completed', 'Cancel', 'Reject'])
     if current_user.role == 'Patient'
-      @history = @records.where('user_id = ? ', current_user.id)
+      @history = @records.where('user_id = ? ', current_user.id).page params[:page]
     else
-      @history = @records.where(doctor_id: Doctor.find_by(user_id: current_user.id).id )
+      @history = @records.where(doctor_id: Doctor.find_by(user_id: current_user.id).id).page params[:page]
     end
+    # @history = @search.result.page params[:page]
   end
 
   def appointment_status
     @id = Appointment.find(params[:id])
     @status = @id.update_attributes(status: params[:status])
-    byebug
     if params[:status] == 'Completed'
       UserMailer.appointment_completed(@id.user, @id.doctor.user.name, @id.app_date).deliver
       redirect_to appointment_history_path
@@ -38,7 +41,7 @@ class AppointmentsController < ApplicationController
 
   def appointment_cancel
     @id = Appointment.find(params[:id])
-    if Time.now + 1.day < @id.app_date
+    if Date.today + 1.day < @id.app_date
       flash[:notice] = "Your appointment has been cancel"
       Appointment.delete(@id)
       UserMailer.appointment_cancel(@id.user, @id.doctor.user.name).deliver

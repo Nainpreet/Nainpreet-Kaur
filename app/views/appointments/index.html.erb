@@ -5,9 +5,17 @@
   </button><center><%= flash[:success_doc] %></center></div>
 <% end %>
 <div class="form-group">
+  <%= search_form_for @search do |f| %>
+    <div class="field">
+        <%= f.label "Search By Appointment Date :" %>
+        <%= f.search_field :app_date_cont %>
+        <%= f.submit "Search" %>
+    </div>
+  <% end %>
+
 <% if @appointments.empty? %>
   <div class="form-group">
-    <center><strong>No Pending Appointment</strong></center>
+    <center><strong>No Appointment</strong></center>
   </div>
 <% else %>
 <center>
@@ -69,4 +77,7 @@
   </table>
 </center>
 <% end %>
+</div>
+<div align="center">
+    <%= paginate @appointments%>
 </div>

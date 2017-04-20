@@ -24,7 +24,7 @@
 
   <div class="form-group">
     <%= f.label " Next Appointment/Complete treatment date : " %>
-    <%= select_tag 'days', options_for_select(days_dropdown2, :selected=> @appointment.app_date.strftime('%b %d %Y %A')) %>
+    <%= select_tag 'days', options_for_select(days_dropdown2, :selected => @appointment.app_date.strftime('%b %d %Y %A')) %>
   </div>
 
   <center>

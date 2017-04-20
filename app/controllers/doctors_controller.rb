@@ -1,14 +1,17 @@
 #
 class DoctorsController < ApplicationController
   def index
+      authorize! :manage, :all
       @doctors = Doctor.all
   end
 
   def new
+      authorize! :manage, :all
     @doctor = Doctor.new
   end
 
   def create
+    authorize! :manage, :all
     @doctor = Doctor.create(doctor_params)
     if @doctor.save
       flash[:success_doc] = "Successfully Added"
@@ -20,13 +23,16 @@ class DoctorsController < ApplicationController
 
   def show
     @doctor = User.find(params[:id])
+    authorize! :show, @doctor
   end
 
   def edit
+    authorize! :manage, :all
     @doctor = Doctor.find(params[:id])
   end
 
   def update
+  authorize! :manage, :all
     @doctor = Doctor.find(params[:id])
     if @doctor.update_attributes(doctor_params)
         redirect_to doctors_path
@@ -36,6 +42,7 @@ class DoctorsController < ApplicationController
   end
 
   def destroy
+    authorize! :manage, :all
     @doctor = Doctor.find(params[:id])
     if @doctor.destroy
       redirect_to doctors_path

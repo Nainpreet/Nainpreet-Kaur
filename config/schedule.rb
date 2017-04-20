@@ -16,7 +16,7 @@
 # every 4.days do
 #   runner "AnotherModel.prune_old_records"
 # end
-every 1.minute do
+every 1.minute :at=>'4.50pm' do
   rake "notifications:send"
 end
 # Learn more: http://github.com/javan/whenever

@@ -16,6 +16,7 @@ gem 'whenever', :require => false
 gem 'twilio-ruby', '~> 4.0.0'
 gem 'phonelib'
 gem 'dotenv-rails', :groups => [:development, :test] # optional
+gem 'ransack', github: 'activerecord-hackery/ransack'
 # gem 'omniauth-facebook'
 # gem 'omniauth-twitter'
 gem "letter_opener", :group => :development

@@ -1,10 +1,11 @@
-<% if flash[:success] %>
-<div class="alert alert-success  alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button><center><%= flash[:success] %></center></div>
-<% end %>
 <div class="form-group">
+  <%= search_form_for @search do |f| %>
+    <div class="field">
+        <%= f.label "Search By Name :" %>
+        <%= f.search_field :name_cont %>
+        <%= f.submit "Search" %>
+    </div>
+  <% end %>
 <center>
   <h1>Departments</h1>
   <table class="table table-bordered">
@@ -12,7 +13,9 @@
       <tr>
         <th height="50">Department Id</th>
         <th height="50">Department Name</th>
+      <% if user_signed_in? && current_user.role == 'admin' %>
         <th colspan=2 height="50"> Actions </th>
+      <% end %>
       </tr>
     </thead>
     <tbody>
@@ -21,13 +24,20 @@
         <tr>
           <td><%= dept.id %></td>
           <td><%= dept.name %></td>
+        <% if user_signed_in? && current_user.role == 'admin' %>
           <td><%= link_to ' Edit ', edit_department_path(dept) %></td>
           <td><%= link_to ' Remove', dept, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
         </tr>
       <% end %>
     <% end %>
     </tbody>
   </table>
+<% if user_signed_in? && current_user.role == 'admin' %>
   <%=button_to 'New Department' , new_department_path, method: :get %>
+<% end %>
 </center>
+</div>
+<div align="center">
+    <%= paginate @departments%>
 </div>

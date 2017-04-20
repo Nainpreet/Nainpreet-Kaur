@@ -1,3 +1,4 @@
+<% if can? :manage, :all %>
 <% if flash[:success_doc] %>
 <div class="alert alert-success  alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -42,3 +43,4 @@
   <%=button_to 'New Doctor' , new_doctor_path, method: :get %>
 </center>
 </div>
+<% end %>
