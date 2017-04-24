@@ -93,6 +93,7 @@ class AppointmentsController < ApplicationController
 
   def edit
     @appointment = Appointment.find(params[:id])
+    authorize! :edit, @appointment
   end
 
   def update

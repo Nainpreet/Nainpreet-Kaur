@@ -11,6 +11,9 @@ class Ability
          can :show, User do |doc|
            doc.id == user.id
          end
+         can :edit, Appointment do |app|
+            app.doctor.user.id == user.id
+         end
          can :index, :appointment
          can :appointment_history, :appointment
        elsif user.role == 'Patient'
