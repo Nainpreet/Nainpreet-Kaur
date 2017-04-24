@@ -10,11 +10,11 @@ class DepartmentsController < ApplicationController
     @department = Department.new
   end
 
-  def create 
+  def create
     authorize! :manage, :all
     @department = Department.create(dept_params)
     if @department.save
-      flash[:success] = "Successfully Added"
+      flash[:success] = 'Successfully Added'
       redirect_to departments_path
     else
       render 'new'
@@ -49,5 +49,4 @@ class DepartmentsController < ApplicationController
   def dept_params
     params.require(:department).permit(:name)
   end
-
 end

@@ -1,6 +1,5 @@
 #
 class PatientsController < ApplicationController
-
   def show
     @patient = User.find(params[:id])
     authorize! :show, @patient
@@ -26,5 +25,4 @@ class PatientsController < ApplicationController
       #  })
     end
   end
-
 end

@@ -14,7 +14,7 @@ class DoctorsController < ApplicationController
     authorize! :manage, :all
     @doctor = Doctor.create(doctor_params)
     if @doctor.save
-      flash[:success_doc] = "Successfully Added"
+      flash[:success_doc] = 'Successfully Added'
       redirect_to doctors_path
     else
       render 'new'
@@ -56,5 +56,4 @@ class DoctorsController < ApplicationController
     params[:doctor][:time_slots] = params[:doctor][:time_slots].join(',')
     params.require(:doctor).permit(:user_id, :department_id, :days, :time_slots)
   end
-
 end

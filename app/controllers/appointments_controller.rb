@@ -42,12 +42,12 @@ class AppointmentsController < ApplicationController
   def appointment_cancel
     @id = Appointment.find(params[:id])
     if Date.today + 1.day < @id.app_date
-      flash[:notice] = "Your appointment has been cancel"
+      flash[:notice] = 'Your appointment has been cancel.'
       @id.update_attributes(status: 'Cancel')
       UserMailer.appointment_cancel(@id.user, @id.doctor.user.name).deliver
       redirect_to appointments_path
     else
-      flash[:notice] = "You can cancel appointment before 24 hours."
+      flash[:notice] = 'You can cancel appointment before 24 hours.'
       redirect_to appointments_path
     end
   end
@@ -63,7 +63,7 @@ class AppointmentsController < ApplicationController
   end
 
   def create
-    @doctors =  Doctor.find_by_department_id(params[:appointment][:department_id])
+    @doctors = Doctor.find_by_department_id(params[:appointment][:department_id])
     @id = Doctor.find_by_user_id(params[:appointment][:doctor_id])
     if @doctors
       if @doctors.user.name == @id.user.name
@@ -78,7 +78,7 @@ class AppointmentsController < ApplicationController
   end
 
   def create_appointment
-    @appointment = Appointment.create(:user_id => current_user.id,:doctor_id => params[:doctor_id] ,:app_date => params[:days], :date => Date.today, :time_slots => params[:time_slots], :symptoms => params[:symptoms])
+    @appointment = Appointment.create(user_id: current_user.id, doctor_id: params[:doctor_id], app_date: params[:days], date: Date.today, :time_slots: params[:time_slots], symptoms: params[:symptoms])
     if @appointment.save
       redirect_to appointment_path(@appointment)
     else
@@ -98,12 +98,11 @@ class AppointmentsController < ApplicationController
 
   def update
     @appointment = Appointment.find(params[:id])
-    if @appointment.update_attributes(:symptoms => params[:appointment][:symptoms], :medications => params[:appointment][:medications], :app_date => params[:days])
+    if @appointment.update_attributes(symptoms: params[:appointment][:symptoms], medications: params[:appointment][:medications], app_date: params[:days])
         redirect_to appointments_path
         UserMailer.appointment_follow(@appointment.user, @appointment.doctor.user.name, @appointment.app_date).deliver
     else
         render 'edit'
     end
   end
-
 end

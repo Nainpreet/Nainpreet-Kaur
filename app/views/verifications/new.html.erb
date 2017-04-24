@@ -1,5 +1,5 @@
 
-<%= form_tag("/verifications", method:"Post") do %>
+<%= form_tag('/verifications', method:'Post') do %>
   <% if !current_user.is_verified %>
     <%= mobile_verification_button %>
     <%= verify_mobile_number_form %>
