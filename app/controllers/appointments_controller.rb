@@ -1,25 +1,25 @@
 #
 class AppointmentsController < ApplicationController
   def index
-    @search = Appointment.where.not(status: ['Completed', 'Cancel', 'Reject']).search(params[:q])
+    authorize! :index, :appointment
+    # @search = Appointment.where.not(status: ['Completed', 'Cancel', 'Reject']).search(params[:q])
     @records = Appointment.where.not(status: ['Completed', 'Cancel', 'Reject'])
     if current_user.role == 'Patient'
-      @appointments = @records.where('user_id = ? ', current_user.id)
+      @appointments = @records.where('user_id = ? ', current_user.id).page params[:page]
     else
-      @appointments = @records.where(doctor_id: Doctor.find_by(user_id: current_user.id).id)
+      @appointments = @records.where(doctor_id: Doctor.find_by(user_id: current_user.id).id).page params[:page]
     end
-    @appointments = @search.result.page params[:page]
+    # @appointments = @search.result.page params[:page]
   end
 
   def appointment_history
-    # @search = Appointment.where(status: ['Completed', 'Cancel', 'Reject']).search(params[:q])
+    authorize! :appointment_history, :appointment
     @records = Appointment.where(status: ['Completed', 'Cancel', 'Reject'])
     if current_user.role == 'Patient'
       @history = @records.where('user_id = ? ', current_user.id).page params[:page]
     else
       @history = @records.where(doctor_id: Doctor.find_by(user_id: current_user.id).id).page params[:page]
     end
-    # @history = @search.result.page params[:page]
   end
 
   def appointment_status
@@ -43,20 +43,22 @@ class AppointmentsController < ApplicationController
     @id = Appointment.find(params[:id])
     if Date.today + 1.day < @id.app_date
       flash[:notice] = "Your appointment has been cancel"
-      Appointment.delete(@id)
+      @id.update_attributes(status: 'Cancel')
       UserMailer.appointment_cancel(@id.user, @id.doctor.user.name).deliver
       redirect_to appointments_path
     else
-      flash[:notice] = "You can't cancel appointment one day before"
+      flash[:notice] = "You can cancel appointment before 24 hours."
       redirect_to appointments_path
     end
   end
 
   def new
+    authorize! :new, :appointment
     @appointment = Appointment.new
   end
 
   def new1
+    authorize! :new, :appointment
     @doctors = Doctor.find(params[:format])
   end
 
@@ -86,6 +88,7 @@ class AppointmentsController < ApplicationController
 
   def show
     @appointment = Appointment.find(params[:id])
+    authorize! :show, @appointment
   end
 
   def edit

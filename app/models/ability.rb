@@ -11,13 +11,20 @@ class Ability
          can :show, User do |doc|
            doc.id == user.id
          end
+         can :index, :appointment
+         can :appointment_history, :appointment
        elsif user.role == 'Patient'
          can :show, User do |patient|
            patient.id == user.id
          end
-         can :map, User do |patient|
-           patient.id == user.id
+         can :show, Appointment do |app|
+           app.user_id == user.id
          end
+         can :map, :patient
+         can :index, :appointment
+         can :appointment_history, :appointment
+         can :new , :appointment
+         can :new1 , :appointment
        end
     #
     # The first argument to `can` is the action you are giving the user

@@ -1,3 +1,4 @@
+#
 class VerificationsController < ApplicationController
   def create
     byebug

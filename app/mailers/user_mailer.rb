@@ -37,18 +37,16 @@ class UserMailer < ApplicationMailer
     mail to: user.email, subject: "Appointment follow up date"
   end
 
-
-  # def appointment_alert(user, doctor)
-  #   @user = user
-  #   @doctor = doctor
-  #   mail to: user.email, subject: "Appointment Remainder"
-  # end
-
-  def appointment_remainder(user,doctor)
+  def appointment_remainder(user, doctor)
     @user = user
     @doctor = doctor
-    puts "Emailing #{subject} to #{email_with_name}"
     mail to: user.email, subject: "Appointment Remainder"
+  end
+
+  def appointment_notification(user, doctor)
+    @user = user
+    @doctor = doctor
+    mail to: user.email, subject: "Pending appointments"
   end
 
 end

@@ -1,18 +1,4 @@
-<% if flash[:success_doc] %>
-<div class="alert alert-success  alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button><center><%= flash[:success_doc] %></center></div>
-<% end %>
 <div class="form-group">
-  <%= search_form_for @search do |f| %>
-    <div class="field">
-        <%= f.label "Search By Appointment Date :" %>
-        <%= f.search_field :app_date_cont %>
-        <%= f.submit "Search" %>
-    </div>
-  <% end %>
-
 <% if @appointments.empty? %>
   <div class="form-group">
     <center><strong>No Appointment</strong></center>
@@ -60,7 +46,7 @@
               <%= radio_button_tag :status,'Accept', app.status == 'Accept'  %>Accept
               <%= radio_button_tag :status, 'Follow Up', app.status == 'Follow Up'  %>Follow Up
             <% if current_user.role == "Patient" %>
-            <td><%= link_to('Cancel', appointment_cancel_path(app.id), method: :get ) %></td>
+            <td><%= link_to('Cancel', appointment_cancel_path(app.id), method: :get) %></td>
             <% end %>
             <% if current_user.role == "Doctor" %>
               <%= radio_button_tag :status, 'Completed',app.status == 'Completed' %>Completed

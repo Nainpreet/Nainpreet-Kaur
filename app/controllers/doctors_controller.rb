@@ -23,7 +23,7 @@ class DoctorsController < ApplicationController
 
   def show
     @doctor = User.find(params[:id])
-    authorize! :show, @doctor
+     authorize! :show, @doctor
   end
 
   def edit

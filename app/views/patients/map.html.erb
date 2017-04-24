@@ -1,11 +1,11 @@
-<div style='width: 800px;'>
-  <div id="geolocation" style='width: 1270px; height: 500px;'></div>
+<div>
+  <div id="geolocation" style='width: 1190px; height: 470px;'></div>
 </div>
 <script type="text/javascript">
   handler = Gmaps.build('Google');
   handler.buildMap({ provider: {}, internal: {id: 'geolocation'}}, function(){
-  marker1 = handler.addMarkers(<%=raw @hashs.to_json %>);
-  marker2 = handler.addMarkers(<%=raw @hash.to_json %>);
+  marker1 = handler.addMarkers(<%=raw @doctor_hashs.to_json %>);
+  marker2 = handler.addMarkers(<%=raw @patient_hash.to_json %>);
   handler.bounds.extendWith(marker1);
   handler.bounds.extendWith(marker2);
   handler.fitMapToBounds();

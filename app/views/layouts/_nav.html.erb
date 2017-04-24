@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
   <% if current_user.role == 'Doctor' %>
     <div class="form-control" style="height:80px ; color:#1247EE ; background-color:#DEB887 ">
-      <img src = "hospital.jpeg" alt="" height="60" width="60" align="left" class="img-circle">
+      <img src = "<%= image_path('hospital.jpeg')%>" alt="" height="60" width="60" align="left" class="img-circle">
       <center><h2><label>Welcome <%= current_user.name %></label></h2></center>
     </div>
     <ul class="nav nav-tabs">
@@ -12,7 +12,7 @@
     </ul>
    <% else current_user.role == 'Patient' %>
      <div class="form-control" style="height:80px ; color:#1247EE ; background-color:#DEB887 ">
-       <img src = "hospital.jpeg" alt="" height="60" width="60" align="left" class="img-circle">
+       <img src = "<%= image_path('hospital.jpeg')%>" alt="" height="60" width="60" align="left" class="img-circle">
        <center><h2><label>Welcome <%= current_user.name %></label></h2></center>
      </div>
      <ul class="nav nav-tabs">
@@ -26,7 +26,7 @@
   <% end %>
 <% else %>
   <div class="form-control" style="height:80px ; color:#1247EE ; background-color:#DEB887 ">
-    <img src = "hospital.jpeg" alt="" height="60" width="60" align="left" class="img-circle">
+    <img src = "<%= image_path('hospital.jpeg')%>" alt="" height="60" width="60" align="left" class="img-circle">
     <center><h2><label> Online Appointment Portal</label></h2></center>
   </div>
   <ul class="nav nav-tabs">

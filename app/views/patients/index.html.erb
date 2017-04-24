@@ -1,9 +1,0 @@
-<%= form_for :trip, url: {action: "show1"}, html: {method: "get"} do |f| %>
-
-  <%= f.select :department_id, options_for_select(@departments.collect { |dept|
-    [dept.name.titleize, dept.id] }, 1), {}, { id: 'departments_select' } %>
-  <%= f.select :doctor_id, options_for_select(@doctors.collect { |doc|
-    [doc.user.name.titleize, doc.id] }, 0), {}, { id: 'doctors_select' } %>
-  <%= f.submit "Check " %>
-
-<% end %>

@@ -6,9 +6,9 @@ class User < ApplicationRecord
   has_many :doctors
   has_many :appointments
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,:confirmable, :lockable, :omniauthable
-  validates_uniqueness_of :phone
-  validates :phone, phone: { possible: false, allow_blank: true, types: [:mobile] }
+     :recoverable, :rememberable, :trackable, :validatable,:confirmable, :lockable, :omniauthable
+  # validates_uniqueness_of :phone
+  # validates :phone, phone: { possible: false, allow_blank: true, types: [:mobile] }
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

@@ -10,7 +10,7 @@ class DepartmentsController < ApplicationController
     @department = Department.new
   end
 
-  def create
+  def create 
     authorize! :manage, :all
     @department = Department.create(dept_params)
     if @department.save
