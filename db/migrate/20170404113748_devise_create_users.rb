@@ -8,7 +8,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :role
       t.string :name
       t.string :address
-      t.integer :phone
+      t.string :verification_code
+      t.string :phone
+      t.boolean :is_verified
       t.date :dob
       t.string :gender
       ## Recoverable
