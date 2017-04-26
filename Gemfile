@@ -25,7 +25,6 @@ gem 'rails_admin', '~> 1.1.1'
 gem 'rails', '~> 5.0.2'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3', :group => :development
-gem 'pg'
 gem 'bootstrap-sass', '~>3.3.5'
 gem 'sass-rails', '~> 5.0'
 gem 'twitter-bootstrap-rails'
@@ -59,6 +58,10 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+end
+
+group :production do
+  gem 'pg'
 end
 
 group :development do
