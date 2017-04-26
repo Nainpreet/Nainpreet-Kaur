@@ -1,0 +1,4 @@
+<option></option>
+<% @doctors.each do |doctor| %>
+<option value="<%= doctor.id %>"><%= doctor.user.name.titleize %></option>
+<% end %>

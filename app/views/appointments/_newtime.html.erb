@@ -1,0 +1,4 @@
+<% timeslot = @time_slots.split(",") %>
+<% timeslot.each do |time| %>
+<option value="<%= time %>"><%= time %></option>
+<% end %>
