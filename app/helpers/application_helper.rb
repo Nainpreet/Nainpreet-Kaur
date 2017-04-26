@@ -1,20 +1,29 @@
 #
 module ApplicationHelper
-  def doctors
-    doctors = User.where(role: 'Doctor')
-  end
 
-  def timeslots
-    timeslots = ['8AM-10Am', '11PM-1PM', '2PM-4PM', '5PM-7PM', 'Not Available']
-  end
+  # def name
+  #    Doctor.all.each do |doc|
+  #      name = doc.user.name
+  #    end
+  # end
 
-  def days
-    days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Not Available']
-  end
-
-  def time_slots_dropdown
-    time_slots_dropdown = Doctor.find(@doctors.id).time_slots.split(',')
-  end
+  # def doctors
+  #   doctors = User.where(role: 'Doctor')
+  # end
+  #
+  # def timeslots
+  #   timeslots = ['8AM-10Am', '11PM-1PM', '2PM-4PM', '5PM-7PM', 'Not Available']
+  # end
+  #
+  # def days
+  #   days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Not Available']
+  # end
+  #
+  # def time_slots_dropdown
+  #   time_slots_dropdown = Doctor.find(@doctors.id).time_slots.split(',')
+  # end
+  #
+  #
 
   def days_dropdown2
     if current_user.role == 'Doctor'

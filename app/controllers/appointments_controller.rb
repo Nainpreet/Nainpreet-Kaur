@@ -63,26 +63,11 @@ class AppointmentsController < ApplicationController
   end
 
   def create
-    @doctors = Doctor.find_by_department_id(params[:appointment][:department_id])
-    @id = Doctor.find_by_user_id(params[:appointment][:doctor_id])
-    if @doctors
-      if @doctors.user.name == @id.user.name
-        redirect_to new1_appointment_path(@doctors)
-      else
-        flash[:alert] = 'There id no doctor to corressponding department'
-        redirect_to new_appointment_path
-      end
-    else
-      redirect_to new_appointment_path
-    end
-  end
-
-  def create_appointment
-    @appointment = Appointment.create(user_id: current_user.id, doctor_id: params[:doctor_id], app_date: params[:days], date: Date.today, :time_slots: params[:time_slots], symptoms: params[:symptoms])
+    @appointment = Appointment.create(user_id: current_user.id, doctor_id: params[:appointment][:doctor_id], app_date: params[:appointment][:app_date], date: Date.today, time_slots: params[:appointment][:time_slots], symptoms: params[:appointment][:symptoms])
     if @appointment.save
       redirect_to appointment_path(@appointment)
     else
-      redirect_to new1_appointment_path(@doctors)
+      render 'new'
     end
   end
 
@@ -104,5 +89,17 @@ class AppointmentsController < ApplicationController
     else
         render 'edit'
     end
+  end
+
+  def updatedoctors
+    @doctors = Department.find(params[:id]).doctors
+  end
+
+  def updatetime
+    @time_slots = Doctor.find(params[:id]).time_slots
+  end
+
+  def updatedate
+    @doctors = Doctor.find(params[:id])
   end
 end

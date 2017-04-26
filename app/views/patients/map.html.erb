@@ -8,6 +8,7 @@
   marker2 = handler.addMarkers(<%=raw @patient_hash.to_json %>);
   handler.bounds.extendWith(marker1);
   handler.bounds.extendWith(marker2);
-  handler.fitMapToBounds();
+    handler.fitMapToBounds();
+    <%= @destination %>
   });
 </script>

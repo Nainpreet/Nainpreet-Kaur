@@ -13,18 +13,30 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label " Symptoms : " %>
-    <%= f.text_field :symptoms %>
+    <div class="control-label col-sm-2">
+      <%= f.label "Symptoms : " %>
+    </div>
+    <div class="col-sm-4">
+      <%= f.text_field :symptoms, {:class => 'form-control'} %>
+    </div>
   </div>
 
   <div class="form-group">
-    <%= f.label " Medications : " %>
-    <%= f.text_field :medications %>
+    <div class="control-label col-sm-2">
+      <%= f.label "Medications : " %>
+    </div>
+    <div class="col-sm-4">
+      <%= f.text_field :medications, {:class => 'form-control'} %>
+    </div>
   </div>
 
   <div class="form-group">
-    <%= f.label " Next Appointment/Complete treatment date : " %>
-    <%= select_tag 'days', options_for_select(days_dropdown2, :selected => @appointment.app_date.strftime('%b %d %Y %A')) %>
+    <div class="control-label col-sm-2">
+      <%= f.label "Next Appointment/Complete treatment date : " %>
+    </div>
+    <div class="col-sm-4">
+      <%= select_tag 'days', options_for_select(days_dropdown2, :selected => @appointment.app_date.strftime('%b %d %Y %A')), {:class => 'form-control'} %>
+    </div>
   </div>
 
   <center>

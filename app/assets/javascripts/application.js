@@ -19,3 +19,30 @@
 //= require underscore
 //= require gmaps/google
 //= require_tree .
+$(document).ready(function(){
+
+    $('#appointment_department_id').on('change', function(){
+       var value = $('#appointment_department_id option:selected').val();
+       $.ajax('updatedoctors/'+value,{
+          success: function(response){
+          }
+       });
+    });
+
+    $('#appointment_doctor_id').on('change', function(){
+       var value = $('#appointment_doctor_id option:selected').val();
+       $.ajax('updatetime/'+value,{
+          success: function(response){
+          }
+       });
+    });
+
+    $('#appointment_doctor_id').on('change', function(){
+       var value = $('#appointment_doctor_id option:selected').val();
+       $.ajax('updatedate/'+value,{
+          success: function(response){
+          }
+       });
+    });
+
+});
