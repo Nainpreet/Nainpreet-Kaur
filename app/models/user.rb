@@ -9,7 +9,11 @@ class User < ApplicationRecord
      :recoverable, :rememberable, :trackable, :validatable,:confirmable, :lockable, :omniauthable
   # validates_uniqueness_of :phone
   # validates :phone, phone: { possible: false, allow_blank: true, types: [:mobile] }
-
+  validates :name, presence: true
+  validates :dob, presence: true
+  validates :address, presence: true
+  validates :phone, presence: true
+  validates :role, presence: true
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider

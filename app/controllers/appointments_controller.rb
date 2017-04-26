@@ -2,14 +2,17 @@
 class AppointmentsController < ApplicationController
   def index
     authorize! :index, :appointment
-    # @search = Appointment.where.not(status: ['Completed', 'Cancel', 'Reject']).search(params[:q])
     @records = Appointment.where.not(status: ['Completed', 'Cancel', 'Reject'])
     if current_user.role == 'Patient'
       @appointments = @records.where('user_id = ? ', current_user.id).page params[:page]
     else
-      @appointments = @records.where(doctor_id: Doctor.find_by(user_id: current_user.id).id).page params[:page]
+      if current_user.doctors.empty?
+        flash[:notice] = "You have no appointments yet"
+        redirect_to doctor_path(current_user.id)
+      else
+        @appointments = @records.where(doctor_id: Doctor.find_by(user_id: current_user.id).id).page params[:page]
+      end
     end
-    # @appointments = @search.result.page params[:page]
   end
 
   def appointment_history
@@ -18,7 +21,12 @@ class AppointmentsController < ApplicationController
     if current_user.role == 'Patient'
       @history = @records.where('user_id = ? ', current_user.id).page params[:page]
     else
-      @history = @records.where(doctor_id: Doctor.find_by(user_id: current_user.id).id).page params[:page]
+      if current_user.doctors.empty?
+        flash[:notice] = "You have no appointments history yet"
+        redirect_to doctor_path(current_user.id)
+      else
+        @history = @records.where(doctor_id: Doctor.find_by(user_id: current_user.id).id).page params[:page]
+      end
     end
   end
 
