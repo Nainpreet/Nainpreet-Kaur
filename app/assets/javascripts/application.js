@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require twitter/bootstrap
-//= require turbolinks
 //= require bootstrap-datepicker
 //= require underscore
 //= require gmaps/google
