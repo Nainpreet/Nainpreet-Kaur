@@ -55,7 +55,7 @@ class AppointmentsController < ApplicationController
       UserMailer.appointment_cancel(@id.user, @id.doctor.user.name).deliver
       redirect_to appointments_path
     else
-      flash[:notice] = 'You can cancel appointment before 24 hours.'
+      flash[:success] = 'You can cancel appointment before 24 hours.'
       redirect_to appointments_path
     end
   end
@@ -73,6 +73,7 @@ class AppointmentsController < ApplicationController
   def create
     @appointment = Appointment.create(user_id: current_user.id, doctor_id: params[:appointment][:doctor_id], app_date: params[:appointment][:app_date], date: Date.today, time_slots: params[:appointment][:time_slots], symptoms: params[:appointment][:symptoms])
     if @appointment.save
+      flash[:notice] = "Your appointment is successfully sent to doctor"
       redirect_to appointment_path(@appointment)
     else
       render 'new'

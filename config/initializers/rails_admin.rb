@@ -38,10 +38,14 @@ RailsAdmin.config do |config|
   end
 
   # config.model 'Doctor' do
-  #     new do
+  #     add do
   #       field :time_slots
   #       field :days
-  #       field :user_id
+  #       field :user_id do
+  #         visible do
+  #           bindings[:view]._current_user.roles.include?("Doctor")
+  #         end
+  #       end
   #       field :department_id
   #     end
   # end
