@@ -23,7 +23,7 @@ RailsAdmin.config do |config|
   ## To disable Gravatar integration in Navigation Bar set to false
   # config.show_gravatar true
   config.authorize_with do
-      redirect_to main_app.root_path if !user_signed_in? || current_user.role != 'admin' 
+      redirect_to main_app.root_path if !user_signed_in? || current_user.role != 'admin'
   end
 
   config.model 'User' do
@@ -31,11 +31,21 @@ RailsAdmin.config do |config|
         field :name
         field :address
         field :phone
-        field :dob
+        field :role
         field :gender
         field :created_at
       end
   end
+
+  # config.model 'Doctor' do
+  #     new do
+  #       field :time_slots
+  #       field :days
+  #       field :user_id
+  #       field :department_id
+  #     end
+  # end
+
   config.current_user_method(&:current_user)
   config.actions do
     dashboard                     # mandatory
