@@ -1,6 +1,7 @@
 #
 class AppointmentsController < ApplicationController
   def index
+    flash[:notice] = nil
     authorize! :index, :appointment
     @records = Appointment.where.not(status: ['Completed', 'Cancel', 'Reject'])
     if current_user.role == 'Patient'
@@ -16,6 +17,7 @@ class AppointmentsController < ApplicationController
   end
 
   def appointment_history
+    flash[:notice] = nil
     authorize! :appointment_history, :appointment
     @records = Appointment.where(status: ['Completed', 'Cancel', 'Reject'])
     if current_user.role == 'Patient'
@@ -73,7 +75,7 @@ class AppointmentsController < ApplicationController
   def create
     @appointment = Appointment.create(user_id: current_user.id, doctor_id: params[:appointment][:doctor_id], app_date: params[:appointment][:app_date], date: Date.today, time_slots: params[:appointment][:time_slots], symptoms: params[:appointment][:symptoms])
     if @appointment.save
-      flash[:notice] = "Your appointment is successfully sent to doctor"
+      flash[:notice] = "Your appointment has been successfully sent to doctor"
       redirect_to appointment_path(@appointment)
     else
       render 'new'

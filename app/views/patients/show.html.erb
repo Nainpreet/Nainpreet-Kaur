@@ -1,7 +1,15 @@
 <%=button_to 'Back', root_path, method: :get %>
-<h3>Designation : <b><%= @patient.role. titleize %></b></h3>
-<center><h5>
+<div style="margin-top:-30px">
+  <center><h1 style="color:#428bca"> Profile </h1></center>
+</div>
 <div class= "form-horizontal">
+  <h3>Designation : <b><%= @patient.role. titleize %></b></h3>
+  <% unless current_user.role == "admin" %>
+    <%=button_to  edit_user_registration_path, method: :get do %>
+      <i class="glyphicon glyphicon-pencil"></i>
+    <% end %>
+  <% end %>
+  <center><h5>
   <div class="form-group">
     <div class="control-label col-sm-2">
       <%= label_tag "Date of Birth : " %>
@@ -39,7 +47,4 @@
   </div>
 
 </div>
-<% unless current_user.role == "admin" %>
-  <%=button_to 'Edit',  edit_user_registration_path, method: :get %>
-<% end %>
 </h5></center>

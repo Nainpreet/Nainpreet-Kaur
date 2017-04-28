@@ -1,11 +1,13 @@
 <div class="form-group">
 <% if @history.empty? %>
-  <div class="form-group">
-    <center><strong>No History as there is no completed appointment</strong></center>
+<center>
+  <div class="form-group" style="height:400px; width:800px; color:#428bca">
+    <h3><strong>No History as there is no completed appointment</strong></h3>
   </div>
+</center>
 <% else %>
 <center>
-  <h1>Appointments History</h1>
+  <h1 style="color:#428bca">Appointments History</h1>
   <table class="table table-bordered" >
     <thead>
       <tr>

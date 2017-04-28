@@ -1,11 +1,13 @@
 <div class="form-group">
 <% if @appointments.empty? %>
-  <div class="form-group">
-    <center><strong>No Appointment</strong></center>
+<center>
+  <div class="form-group" style="height:400px; width:800px; color:#428bca">
+      <h3><strong>No Appointment</strong></h3>
   </div>
+</center>
 <% else %>
 <center>
-  <h1>Pending Appointments </h1>
+  <h1 style="color:#428bca">Pending Appointments </h1>
   <table  class="table table-bordered" >
     <thead>
       <tr>
