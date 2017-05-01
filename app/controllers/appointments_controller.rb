@@ -76,6 +76,7 @@ class AppointmentsController < ApplicationController
     @time = params[:appointment][:time_slots]
     @date = params[:appointment][:app_date]
     @time = DateTime.parse(@time).strftime("%H:%M")
+    byebug
     if  DateTime.now.strftime('%b %d %Y %A') == @date && (@time.to_i <= Time.now.hour+3)
       @appointment = Appointment.new
       flash[:notice] = "You can take appointment minimum 3 hours before"
