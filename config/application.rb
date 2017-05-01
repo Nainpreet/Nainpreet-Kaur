@@ -12,6 +12,6 @@ module AppointmentSystem
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.time_zone = 'New Delhi'
-    # config.active_record.default_timezone = :UTC
+    config.active_record.default_timezone = :utc
   end
 end
