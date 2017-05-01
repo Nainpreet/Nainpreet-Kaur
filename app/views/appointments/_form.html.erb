@@ -22,7 +22,7 @@
       <%= label_tag "Doctors* : " %>
     </div>
     <div class="col-sm-4">
-      <%= f.select :doctor_id, 'Select', {}, {:class => 'form-control'}%>
+      <%= f.select :doctor_id, 'Select', {}, {:class => 'form-control',include_blank: true }%>
     </div>
   </div>
   <div class="form-group">
@@ -30,7 +30,7 @@
       <%= f.label "Available Time slots* : " %>
     </div>
     <div class="col-sm-4">
-      <%= f.select :time_slots, 'Select', {}, {:class => 'form-control'} %>
+      <%= f.select :time_slots, 'Select', {}, {:class => 'form-control', include_blank: true }%>
     </div>
   </div>
 
