@@ -51,14 +51,19 @@ class AppointmentsController < ApplicationController
 
   def appointment_cancel
     @id = Appointment.find(params[:id])
-    if Date.today + 1.day < @id.app_date
-      flash[:notice] = 'Your appointment has been cancel.'
-      @id.update_attributes(status: 'Cancel')
-      UserMailer.appointment_cancel(@id.user, @id.doctor.user.name).deliver
-      redirect_to appointments_path
+    if @id.status == 'Pending'
+      if Date.today + 1.day < @id.app_date
+        flash[:success] = 'Your appointment has been cancel.'
+        @id.update_attributes(status: 'Cancel')
+        UserMailer.appointment_cancel(@id.user, @id.doctor.user.name).deliver
+        redirect_to appointments_path
+      else
+        flash[:success] = 'You can cancel appointment before 24 hours.'
+        redirect_to appointments_path
+      end
     else
-      flash[:success] = 'You can cancel appointment before 24 hours.'
-      redirect_to appointments_path
+        flash[:success] = "You are not authorized to cancel this appointment"
+          redirect_to appointments_path
     end
   end
 
@@ -67,18 +72,22 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.new
   end
 
-  def new1
-    authorize! :new, :appointment
-    @doctors = Doctor.find(params[:format])
-  end
-
   def create
-    @appointment = Appointment.create(user_id: current_user.id, doctor_id: params[:appointment][:doctor_id], app_date: params[:appointment][:app_date], date: Date.today, time_slots: params[:appointment][:time_slots], symptoms: params[:appointment][:symptoms])
-    if @appointment.save
-      flash[:notice] = "Your appointment has been successfully sent to doctor"
-      redirect_to appointment_path(@appointment)
+    @time = params[:appointment][:time_slots]
+    @date = params[:appointment][:app_date]
+    @time = DateTime.parse(@time).strftime("%H:%M")
+    if  DateTime.now.strftime('%b %d %Y %A') == @date && (@time.to_i <= Time.now.hour+3)
+      @appointment = Appointment.new
+      flash[:notice] = "You can take appointment minimum 3 hours before"
+      redirect_to new_appointment_path
     else
-      render 'new'
+      @appointment = Appointment.create(user_id: current_user.id, doctor_id: params[:appointment][:doctor_id], app_date: params[:appointment][:app_date], date: Date.today, time_slots: params[:appointment][:time_slots], symptoms: params[:appointment][:symptoms])
+      if @appointment.save
+        flash[:notice] = "Your appointment has been successfully sent to doctor"
+        redirect_to appointment_path(@appointment)
+      else
+        redirect_to new_appointment_path
+      end
     end
   end
 
@@ -95,10 +104,10 @@ class AppointmentsController < ApplicationController
   def update
     @appointment = Appointment.find(params[:id])
     if @appointment.update_attributes(symptoms: params[:appointment][:symptoms], medications: params[:appointment][:medications], app_date: params[:days])
-        redirect_to appointments_path
-        UserMailer.appointment_follow(@appointment.user, @appointment.doctor.user.name, @appointment.app_date).deliver
+      redirect_to appointments_path
+      UserMailer.appointment_follow(@appointment.user, @appointment.doctor.user.name, @appointment.app_date).deliver
     else
-        render 'edit'
+      render 'edit'
     end
   end
 

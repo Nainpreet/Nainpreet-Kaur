@@ -9,13 +9,9 @@ Rails.application.routes.draw do
   get'appointments/updatedate/:id', to:'appointments#updatedate'
   post 'verifications' => 'verifications#create'
   put 'verifications' => 'verifications#verify'
-  # get'appointtment/new', to:'appointments#new1', as: 'new1_appointment'
   get'appointments/cancel/:id', to:'appointments#appointment_cancel', as: 'appointment_cancel'
   get'appointments/history', to:'appointments#appointment_history', as: 'appointment_history'
-  post'appointment/create', to:'appointments#create_appointment', as: 'create_appointment'
   post'appointment/status', to:'appointments#appointment_status', as: 'appointment_status'
-  get 'patients/update_doctors', as: 'update_doctors'
-  get 'patients/show1', to:'patients#show1'
   resources :doctors
   resources :patients
   resources :departments

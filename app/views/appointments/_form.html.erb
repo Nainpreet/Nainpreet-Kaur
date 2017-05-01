@@ -11,7 +11,7 @@
   <% end %>
   <div class="form-group">
     <div class="control-label col-sm-2">
-      <%= label_tag "Departments : " %>
+      <%= label_tag "Departments* : " %>
     </div>
     <div class="col-sm-4">
       <%= f.collection_select :department_id, Department.all, :id, :name, {:prompt => 'Select'}, class: "form-control" %>
@@ -19,7 +19,7 @@
   </div>
   <div class="form-group">
     <div class="control-label col-sm-2">
-      <%= label_tag "Doctors : " %>
+      <%= label_tag "Doctors* : " %>
     </div>
     <div class="col-sm-4">
       <%= f.select :doctor_id, 'Select', {}, {:class => 'form-control'}%>
@@ -27,7 +27,7 @@
   </div>
   <div class="form-group">
     <div class="control-label col-sm-2">
-      <%= f.label "Available Time slots : " %>
+      <%= f.label "Available Time slots* : " %>
     </div>
     <div class="col-sm-4">
       <%= f.select :time_slots, 'Select', {}, {:class => 'form-control'} %>
@@ -36,7 +36,7 @@
 
   <div class="form-group">
     <div class="control-label col-sm-2">
-      <%= f.label "Available Days : " %>
+      <%= f.label "Available Days* : " %>
     </div>
     <div class="col-sm-4">
       <%= f.select :app_date, 'Select', {}, {:class => 'form-control'} %>
@@ -45,10 +45,10 @@
 
   <div class="form-group">
     <div class="control-label col-sm-2">
-      <%= f.label "Symptoms : " %>
+      <%= f.label "Symptoms* : " %>
     </div>
     <div class="col-sm-4">
-      <%= f.text_field :symptoms, {:class => 'form-control'} %>
+      <%= f.text_field :symptoms, :class => 'form-control' %>
     </div>
   </div>
 

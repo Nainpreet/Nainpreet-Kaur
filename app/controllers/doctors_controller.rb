@@ -1,12 +1,12 @@
 #
 class DoctorsController < ApplicationController
   def index
-      authorize! :manage, :all
-      @doctors = Doctor.all
+    authorize! :manage, :all
+    @doctors = Doctor.all
   end
 
   def new
-      authorize! :manage, :all
+    authorize! :manage, :all
     @doctor = Doctor.new
   end
 
@@ -24,7 +24,7 @@ class DoctorsController < ApplicationController
   def show
     flash[:notice] = nil
     @doctor = User.find(current_user.id)
-     authorize! :show, @doctor
+    authorize! :show, @doctor
   end
 
   def edit
@@ -33,12 +33,12 @@ class DoctorsController < ApplicationController
   end
 
   def update
-  authorize! :manage, :all
+    authorize! :manage, :all
     @doctor = Doctor.find(params[:id])
     if @doctor.update_attributes(doctor_params)
-        redirect_to doctors_path
+      redirect_to doctors_path
     else
-         render 'edit'
+      render 'edit'
     end
   end
 

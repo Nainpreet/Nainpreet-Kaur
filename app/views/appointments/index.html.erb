@@ -44,7 +44,9 @@
           <td><%= app.symptoms %></td>
           <td><%= app.medications %></td>
           <td><%= radio_button_tag :status, 'Pending', app.status == 'Pending' %>Pending
+            <% if current_user.role == "Doctor" %>
               <%= radio_button_tag :status,'Reject', app.status == 'Reject'  %>Reject
+            <% end %>
               <%= radio_button_tag :status,'Accept', app.status == 'Accept'  %>Accept
               <%= radio_button_tag :status, 'Follow Up', app.status == 'Follow Up'  %>Follow Up
             <% if current_user.role == "Patient" %>
