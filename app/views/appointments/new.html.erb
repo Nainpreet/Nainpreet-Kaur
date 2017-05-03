@@ -1,4 +1,6 @@
-<%=button_to 'Back', root_path, method: :get %>
+<%=button_to root_path, method: :get do %>
+  <img alt="Back" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRkeM4b1hBF7vuSZW_iLpA3zjiuA9ykIQ_OmGY1LmEu8VDiwq2L" width=40 height=30 border=0>
+<% end %>
 <% if flash[:alert] %>
   <div class="alert alert-success  alert-dismissible" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -6,5 +8,5 @@
     </button><center><%= flash[:alert] %></center>
   </div>
 <% end %>
-<h1 align="center" style="color:#428bca">New Appointment</h1>
+<h1 align="center" style="color:#428bca;margin-top:-15px">New Appointment</h1>
 <%= render 'form', appointment: @appointment %>

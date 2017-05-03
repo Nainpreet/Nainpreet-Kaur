@@ -1,58 +1,94 @@
 <%= bootstrap_devise_error_messages! %>
-<div class="panel panel-default devise-bs">
-  <div class="panel-heading">
-    <h4 style="color:#428bca"><center>Edit Profile</center></h4>
-  </div>
-  <div class="panel-body">
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <div class="form-group">
-        <%= f.label :email %>
-        <%= f.email_field :email, autofocus: true, class: 'form-control'%>
-      </div>
-      <div class="form-group">
-        <%= f.label :Name %>
-        <%= f.text_field :name, autofocus: true %>
-      </div>
-      <div class="form-group">
-        <%= f.label :Date_of_birth %>
-        <%= f.text_field :dob, "data-provide" => 'datepicker' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :Gender %>
-        <%= f.radio_button :gender,'Female' %>Female
-        <%= f.radio_button :gender, 'Male' %>Male
-        <%= f.radio_button :gender, 'transgender' %>Transgender
-      </div>
-      <div class="form-group">
-        <%= f.label :Address %>
-        <%= f.text_area :address, autofocus: true, cols:35 %>
-      </div>
-      <div class="form-group">
-        <%= f.label :Phone %>
-        <%= f.text_field :phone, autofocus: true %>
-        <% if resource.is_verified %>
-            You're mobile number is verified.
-        <% end%>
-      </div>
-      <% unless current_user.provider %>
-      <div class="form-group">
-        <%= f.label :password %><i>(<%= t('.Leave it if you do not want to change password', default: 'Leave it if you do not want to change password') %>)</i>
-        <%= f.password_field :password %>
-      </div>
-      <div class="form-group">
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation%>
-      </div>
-      <div class="form-group">
-        <%= f.label :current_password %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes', default: 'we need your current password to confirm your changes') %>)</i>
-        <%= f.password_field :current_password, class: 'form-control' %>
-      </div>
-      <% end %>
-      <%= f.submit t('.update', default: 'Update'), class: 'btn btn-primary' %>
-    <% end %>
-  </div>
+<p style="float:right">
+<%= link_to t('.back', default: 'Back'), :back %> |
+<%= link_to t('.delete_my_account', default: 'Delete my account'), registration_path(resource_name), data: { confirm: t('.are_you_sure', default: "Are you sure?") }, method: :delete %>
+</p>
+<div style="margin-top:20px">
+  <center><h1 style="color:#428bca"> Edit Profile </h1></center>
 </div>
-
-<p><%= link_to t('.delete_my_account', default: 'Delete my account'), registration_path(resource_name), data: { confirm: t('.are_you_sure', default: "Are you sure?") }, method: :delete %>.</p>
-
-<%= link_to t('.back', default: 'Back'), :back %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "form-horizontal", method: :put }) do |f| %>
+  <div class="form-group">
+    <div class="control-label col-sm-2">
+      <%= f.label :email %>
+    </div>
+    <div class="col-sm-4">
+      <%= f.email_field :email, autofocus: true, class: 'form-control'%>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="control-label col-sm-2">
+     <%= f.label :Name %>
+    </div>
+    <div class="col-sm-4">
+     <%= f.text_field :name, autofocus: true, class: 'form-control'%>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="control-label col-sm-2">
+     <%= f.label :Date_of_birth %>
+    </div>
+    <div class="col-sm-4">
+     <%= f.text_field :dob, "data-provide" => 'datepicker', class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="control-label col-sm-2">
+     <%= f.label :Gender %>
+    </div>
+    <div class="col-sm-4">
+     <%= f.radio_button :gender,'Female' %>Female
+     <%= f.radio_button :gender, 'Male' %>Male
+     <%= f.radio_button :gender, 'transgender' %>Transgender
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="control-label col-sm-2">
+     <%= f.label :Address %>
+    </div>
+    <div class="col-sm-4">
+     <%= f.text_area :address, autofocus: true, cols:35, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="control-label col-sm-2">
+     <%= f.label :Phone %>
+    </div>
+    <div class="col-sm-4">
+     <%= f.text_field :phone, autofocus: true, class: 'form-control' %>
+     <% if resource.is_verified %>
+        You're mobile number is verified.
+     <% end%>
+    </div>
+  </div>
+  <% unless current_user.provider %>
+    <div class="form-group">
+      <div class="control-label col-sm-2">
+       <%= f.label :password %><i>(<%= t('.If want to change password', default: 'If you want to change password') %>)</i>
+      </div>
+      <div class="col-sm-4">
+       <%= f.password_field :password, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="control-label col-sm-2">
+       <%= f.label :password_confirmation %>
+      </div>
+      <div class="col-sm-4">
+       <%= f.password_field :password_confirmation, class: 'form-control'%>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="control-label col-sm-2">
+       <%= f.label :current_password %> <i>(<%= t('.Need to confirm your changes', default: 'Need to confirm your changes') %>)</i>
+      </div>
+      <div class="col-sm-4">
+       <%= f.password_field :current_password, class: 'form-control' %>
+      </div>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <div class="col-sm-5">
+      <%= f.submit t('.update', default: 'Update'), class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

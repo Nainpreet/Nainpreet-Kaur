@@ -1,21 +1,17 @@
 <div class="form-group">
-  <%= search_form_for @search do |f| %>
-    <div class="field">
-        <%= f.label "Search By Name :" %>
-        <%= f.search_field :name_cont %>
-        <%= f.submit "Search", src: "Search_logo.png", type: "image", width: 40, height: 40 %>
-    </div>
-  <% end %>
+<%= search_form_for @search do |f| %>
+  <div class="field" style="color:#428bca;font-size:20px">
+    <%= f.search_field :name_cont %>
+    <%= f.submit "Search", src: "Search_logo.png", type: "image", width: 40, height: 40 %>
+  </div>
+<% end %>
 <center>
-  <h1>Departments</h1>
-  <table class="table table-bordered">
+  <h1 style="color:#428bca;margin-top:-15px">Departments</h1>
+  <table class="table table-bordered form">
     <thead>
       <tr>
-        <th height="50">Department Id</th>
-        <th height="50">Department Name</th>
-      <% if user_signed_in? && current_user.role == 'admin' %>
-        <th colspan=2 height="50"> Actions </th>
-      <% end %>
+        <th height="50px" style="text-align:center">Department Id</th>
+        <th height="50px" style="text-align:center">Department Name</th>
       </tr>
     </thead>
     <tbody>
@@ -24,18 +20,11 @@
         <tr>
           <td><%= dept.id %></td>
           <td><%= dept.name %></td>
-        <% if user_signed_in? && current_user.role == 'admin' %>
-          <td><%= link_to ' Edit ', edit_department_path(dept) %></td>
-          <td><%= link_to ' Remove', dept, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
         </tr>
       <% end %>
     <% end %>
     </tbody>
   </table>
-<% if user_signed_in? && current_user.role == 'admin' %>
-  <%=button_to 'New Department' , new_department_path, method: :get %>
-<% end %>
 </center>
 </div>
 <div align="center">

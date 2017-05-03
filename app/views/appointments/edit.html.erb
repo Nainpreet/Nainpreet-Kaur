@@ -1,5 +1,7 @@
-<%=button_to 'Back', appointments_path, method: :get %>
-<h1 align="center">Update Appointment</h1>
+<%=button_to appointments_path, method: :get do %>
+  <img alt="Back" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRkeM4b1hBF7vuSZW_iLpA3zjiuA9ykIQ_OmGY1LmEu8VDiwq2L" width=40 height=30 border=0>
+<% end %>
+<h1 align="center" style="color:#428bca;margin-top:-15px">Update Appointment</h1>
 <%= form_for (@appointment),:html => {class: "form-horizontal", role: "form"} do |f| %>
   <% if @appointment.errors.any? %>
     <div id="error_explanation">

@@ -1,7 +1,6 @@
 #
 class AppointmentsController < ApplicationController
   def index
-    flash[:notice] = nil
     authorize! :index, :appointment
     @records = Appointment.where.not(status: ['Completed', 'Cancel', 'Reject'])
     if current_user.role == 'Patient'
@@ -17,7 +16,6 @@ class AppointmentsController < ApplicationController
   end
 
   def appointment_history
-    flash[:notice] = nil
     authorize! :appointment_history, :appointment
     @records = Appointment.where(status: ['Completed', 'Cancel', 'Reject'])
     if current_user.role == 'Patient'

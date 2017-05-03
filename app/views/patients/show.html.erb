@@ -1,7 +1,7 @@
-<%=button_to 'Back', root_path, method: :get %>
-<div style="margin-top:-30px">
-  <center><h1 style="color:#428bca"> Profile </h1></center>
-</div>
+<%=button_to root_path, method: :get do %>
+  <img alt="Back" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRkeM4b1hBF7vuSZW_iLpA3zjiuA9ykIQ_OmGY1LmEu8VDiwq2L" width=40 height=30 border=0>
+<% end %>
+  <center><h1 style="color:#428bca;margin-top:-15px"> Profile </h1></center>
 <div class= "form-horizontal">
   <h3>Designation : <b><%= @patient.role. titleize %></b></h3>
   <% unless current_user.role == "admin" %>
