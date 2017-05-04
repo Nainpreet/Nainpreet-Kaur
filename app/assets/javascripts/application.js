@@ -18,8 +18,8 @@
 //= require bootstrap-datepicker
 //= require underscore
 //= require_tree .
-$(document).ready(function(){
 
+$(document).ready(function(){
     $('#appointment_department_id').on('change', function(){
        var value = $('#appointment_department_id option:selected').val();
        $.ajax('updatedoctors/'+value,{
