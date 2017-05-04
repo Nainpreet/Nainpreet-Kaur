@@ -1,5 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Montserrat);
-
+@import 'jquery-ui/theme.css';
+@import "bootstrap-sprockets";
+@import "bootstrap";
 /* basic reset */
 * {margin: 0; padding:0;};
 

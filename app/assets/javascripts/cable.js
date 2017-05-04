@@ -11,6 +11,3 @@
   App.cable = ActionCable.createConsumer();
 
 }).call(this);
-(function(j$){
-
-})(jQuery);
