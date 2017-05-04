@@ -3,7 +3,7 @@
 <% end %>
   <center><h1 style="color:#428bca;margin-top:-15px"> Profile </h1></center>
 <div class= "form-horizontal">
-  <h3>Designation : <b><%= @patient.role. titleize %></b></h3>
+  <h3>Designation : <b><%= @patient.role %></b></h3>
   <% unless current_user.role == "admin" %>
     <%=button_to  edit_user_registration_path, method: :get do %>
       <i class="glyphicon glyphicon-pencil"></i>
@@ -33,7 +33,7 @@
       <%= label_tag "Address : " %>
     </div>
     <div class="col-sm-3">
-      <textarea cols="35" readonly class="form-control"><%= @patient.address %></textarea>
+      <textarea cols="35" readonly class="form-control"><%= @patient.address.titleize %></textarea>
     </div>
   </div>
 

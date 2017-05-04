@@ -2,7 +2,7 @@
   <% if current_user.role == 'Doctor' %>
     <div class="form-control" style="height:80px ; color:#1247EE ; background-color:#DEB887 ">
       <img src = "<%= image_path('hospital.jpeg')%>" alt="" height="60" width="60" align="left" class="img-circle">
-      <center><h2><label>Welcome <%= current_user.name %></label></h2></center>
+      <center><h2><label>Welcome <%= current_user.name.titleize %></label></h2></center>
     </div>
     <ul class="nav nav-tabs">
       <li role="presentation"><a href="/doctors/<%=current_user.id %>">View Profile</a></li>
@@ -15,7 +15,7 @@
    <% else current_user.role == 'Patient' %>
      <div class="form-control" style="height:80px ; color:#1247EE ; background-color:#DEB887 ">
        <img src = "<%= image_path('hospital.jpeg')%>" alt="" height="60" width="60" align="left" class="img-circle">
-       <center><h2><label>Welcome <%= current_user.name %></label></h2></center>
+       <center><h2><label>Welcome <%= current_user.name.titleize %></label></h2></center>
      </div>
      <ul class="nav nav-tabs">
        <li role="presentation"><a href="/patients/<%= current_user.id %>">View Profile</a></li>

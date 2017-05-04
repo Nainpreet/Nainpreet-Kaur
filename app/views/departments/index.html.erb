@@ -19,7 +19,7 @@
       <% @departments.each do |dept| %>
         <tr>
           <td><%= dept.id %></td>
-          <td><%= dept.name %></td>
+          <td><%= dept.name.titleize %></td>
         </tr>
       <% end %>
     <% end %>

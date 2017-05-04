@@ -36,16 +36,16 @@
       <%= form_tag('/appointment/status', method: 'post') do %>
         <tr>
         <% if current_user.role == "Patient" %>
-          <td><%= app.doctor.department.name %></td>
-          <td><%= app.doctor.user.name %></td>
+          <td><%= app.doctor.department.name.titleize %></td>
+          <td><%= app.doctor.user.name.titleize %></td>
         <% else %>
-          <td><%= app.user.name %></td>
+          <td><%= app.user.name.titleize %></td>
         <% end %>
           <td><%= app.time_slots %></td>
           <td><%= app.date %></td>
           <td><%= app.app_date %></td>
-          <td><%= app.symptoms %></td>
-          <td><%= app.medications %></td>
+          <td><%= app.symptoms%></td>
+          <td><%= app.medications%></td>
           <td><%= radio_button_tag :status, 'Pending', app.status == 'Pending' %>Pending
             <% if current_user.role == "Doctor" %>
               <%= radio_button_tag :status,'Reject', app.status == 'Reject'  %>Reject

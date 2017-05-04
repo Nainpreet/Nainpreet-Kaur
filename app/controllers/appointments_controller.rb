@@ -80,7 +80,7 @@ class AppointmentsController < ApplicationController
       flash[:notice] = "You can take appointment minimum 3 hours before"
       redirect_to new_appointment_path
     else
-      @appointment = Appointment.create(user_id: current_user.id, doctor_id: params[:appointment][:doctor_id], app_date: params[:appointment][:app_date], date: Date.today, time_slots: params[:appointment][:time_slots], symptoms: params[:appointment][:symptoms])
+      @appointment = Appointment.create(user_id: current_user.id, doctor_id: params[:appointment][:doctor_id], app_date: params[:appointment][:app_date], date: Date.today, time_slots: params[:appointment][:time_slots], symptoms: params[:appointment][:symptoms].titleize)
       if @appointment.save
         flash[:notice] = "Your appointment has been successfully sent to doctor"
         redirect_to appointment_path(@appointment)
@@ -102,7 +102,7 @@ class AppointmentsController < ApplicationController
 
   def update
     @appointment = Appointment.find(params[:id])
-    if @appointment.update_attributes(symptoms: params[:appointment][:symptoms], medications: params[:appointment][:medications], app_date: params[:days])
+    if @appointment.update_attributes(symptoms: params[:appointment][:symptoms].titleize, medications: params[:appointment][:medications].titleize, app_date: params[:days])
       redirect_to appointments_path
       UserMailer.appointment_follow(@appointment.user, @appointment.doctor.user.name, @appointment.app_date).deliver
     else

@@ -22,7 +22,6 @@ class DoctorsController < ApplicationController
   end
 
   def show
-    flash[:notice] = nil
     @doctor = User.find(current_user.id)
     authorize! :show, @doctor
   end
