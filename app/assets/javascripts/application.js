@@ -1,5 +1,5 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
+// This is a manifest file that'll be compiled into application.js, which will include all the files
 //
 // Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
 // or any plugin's vendor/assets/javascripts directory can be referenced here using a relative path.
@@ -44,10 +44,31 @@ $(document).ready(function(){
        });
     });
 
+    $('#user_email, #user_password, #user_password_confirmation').on('keypress', function() {
+        var email = $('#user_email').val().length;
+        var password = $('#user_password').val().length;
+        var password_confirmation = $('#user_password_confirmation').val().length;
+        if (email == 0 || password == 0 || password_confirmation == 0) {
+          $('button').prop('disabled',true);
+        }
+        else {
+          $('button').prop('disabled',false);
+        }
+    });
+
   var current_fs,next_fs,previous_fs;  //fieldsets
   var left,opacity,scale;  // fieldsets properties which we will animate
 
   $(".next").click(function(){
+    var email = $("#user_email").val();
+    var password = $('#user_password').val().length;
+    var password_confirmation = $('#user_password_confirmation').val().length;
+    if (email == 0 || password == 0 || password_confirmation == 0)
+    {
+      return false;
+    }
+    else
+    {
       current_fs = $(this).parent();
       next_fs = $(this).parent().next();
       // activate next step on progressbar
@@ -70,6 +91,7 @@ $(document).ready(function(){
             //this comes from custom easing plugin
             easing:'easeInOutBack'
         });
+      }
    });
 
    $(".previous").click(function(){

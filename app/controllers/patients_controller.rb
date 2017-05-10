@@ -14,15 +14,15 @@ class PatientsController < ApplicationController
       marker.lng user.longitude
       marker.infowindow user.name
     end
-    @doctor_hashs = Gmaps4rails.build_markers(@doctors) do |doc, marker|
-      marker.lat doc.doctor.user.latitude
-      marker.lng doc.doctor.user.longitude
-      marker.infowindow doc.doctor.user.name
-      # marker.picture({
-      #   :url=> "logo.jpg",
-      #   :width  => "30",
-      #   :height => "30"
-      #  })
-    end
+    # @doctor_hashs = Gmaps4rails.build_markers(@doctors) do |doc, marker|
+    #   marker.lat doc.doctor.user.latitude
+    #   marker.lng doc.doctor.user.longitude
+    #   marker.infowindow doc.doctor.user.name
+    #   # marker.picture({
+    #   #   :url=> "logo.jpg",
+    #   #   :width  => "30",
+    #   #   :height => "30"
+    #   #  })
+    # end
   end
 end

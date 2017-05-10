@@ -4,11 +4,9 @@
   <center><h1 style="color:#428bca;margin-top:-15px"> Profile </h1></center>
 <div class= "form-horizontal">
   <h3>Designation : <b><%= @patient.role %></b></h3>
-  <% unless current_user.role == "admin" %>
     <%=button_to  edit_user_registration_path, method: :get do %>
       <i class="glyphicon glyphicon-pencil"></i>
     <% end %>
-  <% end %>
   <center><h5>
   <div class="form-group">
     <div class="control-label col-sm-2">

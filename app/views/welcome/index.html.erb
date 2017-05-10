@@ -1,8 +1,6 @@
+</div>
 <% unless user_signed_in? %>
 <html>
-  <title>W3.CSS</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <style>
         html,body {
       	margin: 0;
@@ -30,7 +28,7 @@
         }
   </style>
   <body>
-    <div class="slider" id="main-slider"><!-- outermost container element -->
+    <div class="slider img-responsive" id="main-slider"><!-- outermost container element -->
     	<div class="slider-wrapper"><!-- innermost wrapper element -->
     		<img src="<%= image_path('h1.jpeg')%>" alt="First" class="slide" /><!-- slides -->
     		<img src="<%= image_path('h2.jpeg')%>" alt="Second" class="slide" />
@@ -91,7 +89,7 @@
             }, false);
           }
         };
-      document.addEventListener( "DOMContentLoaded", function() {
+        document.addEventListener( "DOMContentLoaded", function() {
         var slider = new Slideshow( "#main-slider" );
         });
       })();

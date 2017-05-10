@@ -8,5 +8,7 @@
     </button><center><%= flash[:alert] %></center>
   </div>
 <% end %>
-<h1 align="center" style="color:#428bca;margin-top:-15px">New Appointment</h1>
+<div class="form-group">
+  <h1 align="center" style="color:#428bca;margin-top:-5px">New Appointment</h1>
+</div>
 <%= render 'form', appointment: @appointment %>
