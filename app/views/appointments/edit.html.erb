@@ -1,7 +1,7 @@
 <%=button_to appointments_path, method: :get do %>
   <img alt="Back" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRkeM4b1hBF7vuSZW_iLpA3zjiuA9ykIQ_OmGY1LmEu8VDiwq2L" width=40 height=30 border=0>
 <% end %>
-<h1 align="center" style="color:#428bca;margin-top:-15px">Update Appointment</h1>
+<h1 align="center" style="color:#428bca;margin-top:20px">Update Appointment</h1><br>
 <%= form_for (@appointment),:html => {class: "form-horizontal", role: "form"} do |f| %>
   <% if @appointment.errors.any? %>
     <div id="error_explanation">
@@ -15,7 +15,7 @@
   <% end %>
 
   <div class="form-group">
-    <div class="control-label col-sm-2">
+    <div class="control-label col-sm-4">
       <%= f.label "Symptoms : " %>
     </div>
     <div class="col-sm-4">
@@ -24,7 +24,7 @@
   </div>
 
   <div class="form-group">
-    <div class="control-label col-sm-2">
+    <div class="control-label col-sm-4">
       <%= f.label "Medications : " %>
     </div>
     <div class="col-sm-4">
@@ -33,8 +33,8 @@
   </div>
 
   <div class="form-group">
-    <div class="control-label col-sm-2">
-      <%= f.label "Next Appointment/ Complete treatment date : " %>
+    <div class="control-label col-sm-4">
+      <%= f.label "Next Appointment / Complete treatment date : " %>
     </div>
     <div class="col-sm-4">
       <%= select_tag 'days', options_for_select(days_dropdown2, :selected => @appointment.app_date.strftime('%b %d %Y %A')), {:class => 'form-control'} %>

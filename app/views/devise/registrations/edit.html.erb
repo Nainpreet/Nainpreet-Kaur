@@ -3,12 +3,12 @@
 <%= link_to t('.back', default: 'Back'), :back %> |
 <%= link_to t('.delete_my_account', default: 'Delete my account'), registration_path(resource_name), data: { confirm: t('.are_you_sure', default: "Are you sure?") }, method: :delete %>
 </p>
-<div style="margin-top:20px">
-  <center><h1 style="color:#428bca"> Edit Profile </h1></center>
+<div style="margin-top:35px" class="form-group">
+   <h1 style="color:#428bca;margin-left:40%"> Edit Profile </h1>
 </div>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "form-horizontal", method: :put }) do |f| %>
   <div class="form-group">
-    <div class="control-label col-sm-2">
+    <div class="control-label col-sm-4">
       <%= f.label :email %>
     </div>
     <div class="col-sm-4">
@@ -16,7 +16,7 @@
     </div>
   </div>
   <div class="form-group">
-    <div class="control-label col-sm-2">
+    <div class="control-label col-sm-4">
      <%= f.label :Name %>
     </div>
     <div class="col-sm-4">
@@ -24,7 +24,7 @@
     </div>
   </div>
   <div class="form-group">
-    <div class="control-label col-sm-2">
+    <div class="control-label col-sm-4">
      <%= f.label :Date_of_birth %>
     </div>
     <div class="col-sm-4">
@@ -32,7 +32,7 @@
     </div>
   </div>
   <div class="form-group">
-    <div class="control-label col-sm-2">
+    <div class="control-label col-sm-4">
      <%= f.label :Gender %>
     </div>
     <div class="col-sm-4">
@@ -42,7 +42,7 @@
     </div>
   </div>
   <div class="form-group">
-    <div class="control-label col-sm-2">
+    <div class="control-label col-sm-4">
      <%= f.label :Address %>
     </div>
     <div class="col-sm-4">
@@ -50,7 +50,7 @@
     </div>
   </div>
   <div class="form-group">
-    <div class="control-label col-sm-2">
+    <div class="control-label col-sm-4">
      <%= f.label :Phone %>
     </div>
     <div class="col-sm-4">
@@ -62,7 +62,7 @@
   </div>
   <% unless current_user.provider %>
     <div class="form-group">
-      <div class="control-label col-sm-2">
+      <div class="control-label col-sm-4">
        <%= f.label :password %><i>(<%= t('.If want to change password', default: 'If you want to change password') %>)</i>
       </div>
       <div class="col-sm-4">
@@ -70,7 +70,7 @@
       </div>
     </div>
     <div class="form-group">
-      <div class="control-label col-sm-2">
+      <div class="control-label col-sm-4">
        <%= f.label :password_confirmation %>
       </div>
       <div class="col-sm-4">
@@ -78,7 +78,7 @@
       </div>
     </div>
     <div class="form-group">
-      <div class="control-label col-sm-2">
+      <div class="control-label col-sm-4">
        <%= f.label :current_password %> <i>(<%= t('.Need to confirm your changes', default: 'Need to confirm your changes') %>)</i>
       </div>
       <div class="col-sm-4">
@@ -87,7 +87,7 @@
     </div>
   <% end %>
   <div class="form-group">
-    <div class="col-sm-5">
+    <div class="control-label col-sm-8">
       <%= f.submit t('.update', default: 'Update'), class: 'btn btn-primary' %>
     </div>
   </div>

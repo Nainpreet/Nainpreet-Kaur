@@ -17,9 +17,10 @@
         });
       });
     </script>
+
   </head>
 
-  <body style="background-color:#F5F5DC">
+  <body style=" background-image:url(<%= image_path("background2.jpg") %>)">
     <%= render 'layouts/nav' %>
     <% flash.each do |name, msg| %>
       <% if msg.is_a?(String) %>

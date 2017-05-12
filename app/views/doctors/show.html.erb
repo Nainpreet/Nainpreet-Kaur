@@ -1,84 +1,79 @@
-<%=button_to root_path, method: :get do %>
-  <img alt="Back" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRkeM4b1hBF7vuSZW_iLpA3zjiuA9ykIQ_OmGY1LmEu8VDiwq2L" width=40 height=30 border=0>
-<% end %>
-<div style="margin-top:-30px">
+<div style="margin-top:20px">
   <center><h1 style="color:#428bca"> Profile </h1></center>
 </div>
 <div class= "form-horizontal">
   <h3 >Designation : <b><%= @doctor.role %></b></h3>
-  <% unless current_user.role == "admin" %>
-    <%=button_to  edit_user_registration_path, method: :get do %>
-      <i class="glyphicon glyphicon-pencil"></i>
-    <% end %>
+  <%=button_to  edit_user_registration_path, method: :get do %>
+    <i class="glyphicon glyphicon-pencil"></i>
   <% end %>
-  <center><h5>
 <% if doctor_alloted? %>
   <div class="form-group">
-    <div class="control-label col-sm-2">
+    <div class="control-label col-sm-4">
       <%= label_tag "Department : " %>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-4">
       <input type="text" value = "<%= @doctor.doctors.first.department.name.titleize %>" readonly size="35" class="form-control"/>
     </div>
   </div>
 
   <div class="form-group">
-    <div class="control-label col-sm-2">
+    <div class="control-label col-sm-4">
       <%= label_tag "Time Slots : " %>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-4">
       <input type="text" value = "<%= @doctor.doctors.first.time_slots %>" readonly size="35" class="form-control"/>
     </div>
   </div>
 
   <div class="form-group">
-    <div class="control-label col-sm-2">
+    <div class="control-label col-sm-4">
       <%= label_tag "Days : " %>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-4">
       <input type="text" value = "<%= @doctor.doctors.first.days %>" readonly size="35" class="form-control"/>
     </div>
   </div>
 <% else %>
   <div class="form-group">
+    <center>
       <h4 style="color:#428bca"> Yet you are not appointed as our doctor </h4>
+    </center>
   </div>
 <% end %>
-<div class="form-group">
-  <div class="control-label col-sm-2">
-    <%= label_tag "Date of Birth : " %>
+  <div class="form-group">
+    <div class="control-label col-sm-4">
+      <%= label_tag "Date of Birth : " %>
+    </div>
+    <div class="col-sm-4">
+      <input type="text" value = "<%= @doctor.dob %>" readonly size="35" class="form-control"/>
+    </div>
   </div>
-  <div class="col-sm-3">
-    <input type="text" value = "<%= @doctor.dob %>" readonly size="35" class="form-control"/>
-  </div>
-</div>
 
-<div class="form-group">
-  <div class="control-label col-sm-2">
-    <%= label_tag "Gender : " %>
+  <div class="form-group">
+    <div class="control-label col-sm-4">
+      <%= label_tag "Gender : " %>
+    </div>
+    <div class="col-sm-4">
+       <input type="text" value = "<%= @doctor.gender %>" readonly size="35" class="form-control"/>
+    </div>
   </div>
-  <div class="col-sm-3">
-     <input type="text" value = "<%= @doctor.gender %>" readonly size="35" class="form-control"/>
-  </div>
-</div>
 
-<div class="form-group">
-  <div class="control-label col-sm-2">
-    <%= label_tag "Address : " %>
+  <div class="form-group">
+    <div class="control-label col-sm-4">
+      <%= label_tag "Address : " %>
+    </div>
+    <div class="col-sm-4">
+      <textarea cols="35" readonly class="form-control"><%= @doctor.address.titleize %></textarea>
+    </div>
   </div>
-  <div class="col-sm-3">
-    <textarea cols="35" readonly class="form-control"><%= @doctor.address.titleize %></textarea>
-  </div>
-</div>
 
-<div class="form-group">
-  <div class="control-label col-sm-2">
-    <%= label_tag "Phone : " %>
+  <div class="form-group">
+    <div class="control-label col-sm-4">
+      <%= label_tag "Phone : " %>
+    </div>
+    <div class="col-sm-4">
+      <input type="text" value = "<%= @doctor.phone %>" readonly size="35" class="form-control"/>
+    </div>
   </div>
-  <div class="col-sm-3">
-    <input type="text" value = "<%= @doctor.phone %>" readonly size="35" class="form-control"/>
-  </div>
-</div>
 
-</h5></center>
 </div>

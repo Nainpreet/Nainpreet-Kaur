@@ -1,21 +1,23 @@
 <%= bootstrap_devise_error_messages! %>
-<div class="panel panel-default devise-bs">
+<div class="panel panel-default devise-bs" style="margin-top:50px;width:800px;margin-left:200px">
   <div class="panel-heading">
-    <h4><%= t('.resend_confirmation_instructions', default: 'Resend confirmation instructions') %></h4>
+    <h4 style="color:#428bca;text-align:center"><%= t('.resend_confirmation_instructions', default: 'Resend confirmation instructions') %></h4>
   </div>
   <div class="panel-body">
     <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, role: 'form' }) do |f| %>
       <div class="form-group">
+        <div class="col-sm-1"></div>
         <div class="control-label col-sm-1">
-        <%= f.label :email %>
+          <%= f.label :email %>
+        </div>
+        <div class="col-sm-4">
+          <%= f.email_field :email, autofocus: true, class: "form-control"  %>
+        </div>
       </div>
-      <div class="col-sm-3">
-        <%= f.email_field :email, autofocus: true, class: "form-control"  %>
-      </div>
-    </div>
       <%= f.submit t('.resend_confirmation_instructions', default: 'Resend confirmation instructions'), class: 'btn btn-primary' %>
     <% end %>
-  </div>
+  </div><br>
+  <center>
+    <%= render 'devise/shared/links' %>
+  </center>
 </div>
-
-<%= render 'devise/shared/links' %>

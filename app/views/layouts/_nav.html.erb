@@ -2,7 +2,7 @@
   <% if current_user.role == 'Doctor' %>
     <header>
      <nav class="navbar navbar-default">
-       <div class="form-control" style="height:80px ; color:#1247EE ; background-color:#DEB887 ">
+       <div class="form-control" style="height:80px">
          <img src = "<%= image_path('hospital.jpeg')%>" alt="" height="60" width="60" align="left" class="img-circle img-responsive">
          <center><h2><label>Welcome <%= current_user.name.titleize %></label></h2></center>
        </div>
@@ -29,7 +29,7 @@
   <% else current_user.role == 'Patient' %>
      <header>
       <nav class="navbar navbar-default">
-        <div class="form-control" style="height:80px ; color:#1247EE ; background-color:#DEB887 ">
+        <div class="form-control" style="height:80px">
           <img src = "<%= image_path('hospital.jpeg')%>" alt="" height="60" width="60" align="left" class="img-circle img-responsive">
           <center><h2><label>Welcome <%= current_user.name.titleize %></label></h2></center>
         </div>
@@ -57,31 +57,42 @@
      </header>
   <% end %>
 <% else %>
-  <header>
-   <nav class="navbar navbar-default">
-     <div class="form-control" style="height:80px ; color:#1247EE ; background-color:#DEB887 ">
-       <img src = "<%= image_path('hospital.jpeg')%>" alt="" height="60" width="60" align="left" class="img-circle img-responsive">
-       <center><h2><label> Online Appointment Portal</label></h2></center>
-     </div>
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
+    <div class="form-control" style="height:80px">
+      <img src = "<%= image_path('hospital.jpeg')%>" alt="" height="60" width="60" align="left" class="img-circle img-responsive">
+      <center><h2><label> Online Appointment Portal</h2></center>
+      <div style="float:left">
+        <h3>
+          <a href="/departments"><span class="logo">Departments</span></a> |
+        <a href="/contact"><span class="logo">Contact Us</span></a>
+        </h3>
       </div>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li role="presentation"><a href="/">Home</a></li>
-          <li role="presentation" ><a href="/users/sign_in">Login</a></li>
-          <li role="presentation"><a href="/departments">Deaprtments</a></li>
-          <li role="presentation"><a href="/contact">Contact us</a></li>
-        </ul>
+      <div style="float:right">
+        <h3>
+          <a href="/users/sign_in"><span class="logo">Login</span></a> |
+          <a href="/users/sign_up"><span class="logo">Sign Up</span></a>
+        </h3>
       </div>
     </div>
-   </nav>
-  </header>
+
+    <!-- <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="/">Home</a>
+      <a href="/users/sign_in">Login</a>
+      <a href="/departments">Deaprtments</a>
+      <a href="/contact">Contact us</a>
+    </div>
+
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+
+    <script>
+      function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+      }
+
+      function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      }
+    </script> -->
+
 <% end %>
 <div class="container">

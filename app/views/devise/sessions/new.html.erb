@@ -1,11 +1,11 @@
 <%= bootstrap_devise_error_messages! %>
-<center><h2 style="color:#428bca;margin-top:20px"><%= t('.sign_in', default: 'Sign in') %></h2></center>
 <div class="container">
   <div class='row'>
     <div class='col-md-2'></div>
     <div class='col-md-8'>
      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: 'form', id: 'msform'}) do |f| %>
-      <fieldset  class="responsive-fieldset">
+      <fieldset  class="responsive-fieldset" style="margin-top:50px">
+          <center><h2 style="color:#428bca;margin-top:20px"><%= t('.sign_in', default: 'Sign in') %></h2></center>
         <%= f.email_field :email, autofocus: true, placeholder: "Email" %>
         <%= f.password_field :password, placeholder: "Password"%>
         <%= f.submit  t('.sign_in', default: 'Sign in'), class: 'action-button'%>

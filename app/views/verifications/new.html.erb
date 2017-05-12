@@ -1,12 +1,12 @@
-<body onload="model()">
+<%count=0%><body onload="modal()">
 <script>
 function modal()
 {
   $('#myModal').show();
 }
 </script>
-<div id="myModel">
-  <div class="modal-dialog" role="document">
+<div id="myModal" >
+  <div class="modal-dialog"role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h3 class="modal-title"> Mobile Verification </h3>
@@ -19,8 +19,8 @@ function modal()
         <% end %>
         <% end %>
       </div>
-       <div class="modal-footer">
-         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+       <div class=" modal-footer">
+         <button class="btn" data-target ="#myModal" data-toggle = "modal"  data-dismiss ="modal" aria-hidden="true">Close</button>
       </div>
     </div>
   </div>
