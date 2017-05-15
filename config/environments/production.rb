@@ -48,7 +48,7 @@ Rails.application.configure do
   # when problems arise.
   config.log_level = :debug
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: "limitless-stream-47792.herokuapp.com" }
+  config.action_mailer.default_url_options = { host: "online-appointment-system.herokuapp.com" }
   config.action_mailer.smtp_settings = {
       address:              'smtp.gmail.com',
       port:                 "587",
