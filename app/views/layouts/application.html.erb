@@ -10,13 +10,13 @@
     <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
     <script src='//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js' type='text/javascript'></script> <!-- only if you need custom infoboxes -->
 
-    <!-- <script src="//code.jquery.com/jquery-1.8.3.min.js"></script>
     <script src="//code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-    <link href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
-    <link href="//code.jquery.com/ui/1.9.2/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" /> -->
+    <link href="//code.jquery.com/ui/1.9.2/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
     <script>
       $(function() {
         $("#datepicker").datepicker({
+          changeYear: true,
+          changeMonth: true,
           format: "yyyy-mm-dd",
           minDate: '-50Y',
           maxDate:'-1D',
