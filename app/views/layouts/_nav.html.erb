@@ -4,7 +4,7 @@
      <nav class="navbar navbar-default">
        <div class="form-control" style="height:80px">
          <img src = "<%= image_path('hospital.jpeg')%>" alt="" height="60" width="60" align="left" class="img-circle img-responsive">
-         <center><h2><label>Welcome <%= current_user.name.titleize %></label></h2></center>
+         <center><h2><label>Welcome Dr. <%= current_user.name.titleize %></label></h2></center>
        </div>
       <div class="container-fluid">
         <div class="navbar-header">
@@ -17,9 +17,9 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li role="presentation"><a href="/doctors/<%=current_user.id %>">View Profile</a></li>
             <li role="presentation"><a href="/appointments">View Appointments</a></li>
             <li role="presentation"><a href="/appointments/history">Appointment history</a></li>
+            <li role="presentation"><a href="/doctors/<%=current_user.id %>">View Profile</a></li>
             <li role="presentation"><%= link_to('Logout', destroy_user_session_path, :method => :delete, class:"navbar-right") %></li>
           </ul>
         </div>
@@ -44,11 +44,11 @@
          </div>
          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
            <ul class="nav navbar-nav">
-             <li role="presentation"><a href="/patients/<%= current_user.id %>">View Profile</a></li>
              <li role="presentation"><a href="/appointments/new">Take Appointments</a></li>
              <li role="presentation"><a href="/appointments">Check Appointment Status</a></li>
              <li role="presentation"><a href="/appointments/history">Appointment history</a></li>
              <li role="presentation"><a href="/map">Map</a></li>
+             <li role="presentation"><a href="/patients/<%= current_user.id %>">View Profile</a></li>
              <li role="presentation"><%= link_to('Logout', destroy_user_session_path, :method => :delete, class:"navbar-right") %></li>
            </ul>
          </div>
